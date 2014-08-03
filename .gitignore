@@ -1,0 +1,11 @@
+__pycache__
+*.o
+*.d
+*.a
+*.elf
+*.bin
+*.fbi
+software/dvisampler0.c
+software/dvisampler0.h
+software/dvisampler1.c
+software/dvisampler1.h
