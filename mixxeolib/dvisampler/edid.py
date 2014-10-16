@@ -115,7 +115,7 @@ class EDID(Module, AutoCSR):
 
 		fsm = FSM()
 		self.submodules += fsm
-	
+
 		fsm.act("WAIT_START")
 		fsm.act("RCV_ADDRESS",
 			If(counter == 8,

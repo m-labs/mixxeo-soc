@@ -43,7 +43,7 @@ class Clocking(Module, AutoCSR):
 			p_CLKOUT1_DIVIDE=5,  # pix2x
 			p_CLKOUT2_DIVIDE=10, # pix
 			p_COMPENSATION="INTERNAL",
-			
+
 			i_CLKINSEL=1,
 			i_CLKIN1=clk_se,
 			o_CLKOUT0=pll_clk0, o_CLKOUT1=pll_clk1, o_CLKOUT2=pll_clk2,

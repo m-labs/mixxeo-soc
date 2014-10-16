@@ -60,7 +60,7 @@ class MixFramebuffer(Module, AutoCSR):
 		assert(all(lasmim.aw == lasmims[0].aw and lasmim.dw == lasmims[0].dw
 			for lasmim in lasmims))
 		pack_factor = lasmims[0].dw//bpp
-		
+
 		self.fi = FrameInitiator(lasmims[0].aw, pack_factor, len(lasmims))
 		self.blender = Blender(len(lasmims), pack_factor, blender_latency)
 		self.driver = Driver(pack_factor, pads_vga, pads_dvi)

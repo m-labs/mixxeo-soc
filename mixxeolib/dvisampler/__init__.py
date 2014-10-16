@@ -18,7 +18,7 @@ class DVISampler(Module, AutoCSR):
 
 		for datan in range(3):
 			name = "data" + str(datan)
-			
+
 			cap = DataCapture(getattr(pads, name + "_p"), getattr(pads, name + "_n"), 8)
 			setattr(self.submodules, name + "_cap", cap)
 			self.comb += cap.serdesstrobe.eq(self.clocking.serdesstrobe)

@@ -140,7 +140,7 @@ class FrameExtraction(Module, AutoCSR):
 		pack_counter = Signal(max=pack_factor)
 		self.sync.pix += [
 			cur_word_valid.eq(0),
-			If(new_frame, 
+			If(new_frame,
 				cur_word_valid.eq(pack_counter == (pack_factor - 1)),
 				pack_counter.eq(0),
 			).Elif(self.valid_i & self.de,
@@ -171,7 +171,7 @@ class FrameExtraction(Module, AutoCSR):
 			fifo.re.eq(self.frame.ack),
 			self.busy.eq(0)
 		]
-		
+
 		# overflow detection
 		pix_overflow = Signal()
 		pix_overflow_reset = Signal()

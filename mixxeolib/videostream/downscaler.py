@@ -104,14 +104,14 @@ class MultiChopper(Module):
 			if i == N-1:
 				self.sync += \
 					If(load_init_chopper,
-						prev_acc_r.eq(ic)	
+						prev_acc_r.eq(ic)
 					).Elif(self.next,
 						prev_acc_r.eq(acc)
 					)
 			prev_acc = acc
 
 			# initialize stage 2
-			fsm.act(i, 
+			fsm.act(i,
 				load_init_chopper.eq(1),
 				ic_inc.eq(1),
 				NextState(i + 1)
@@ -197,7 +197,7 @@ class Packer(Module):
 		###
 
 		buf = Record([("w"+str(i), base_layout) for i in range(2*N)])
-		
+
 		wrp = Signal(max=2*N)
 		wrp_next = Signal(max=2*N)
 		self.comb += wrp_next.eq(wrp + self.count)
@@ -208,7 +208,7 @@ class Packer(Module):
 
 		rdp = Signal()
 		self.sync += If(self.stb, rdp.eq(~rdp))
-		self.comb += If(rdp, 
+		self.comb += If(rdp,
 				[getattr(self.o, "w"+str(i)).eq(getattr(buf, "w"+str(i+N))) for i in range(N)]
 			).Else(
 				[getattr(self.o, "w"+str(i)).eq(getattr(buf, "w"+str(i))) for i in range(N)]

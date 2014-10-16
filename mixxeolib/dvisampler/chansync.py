@@ -55,7 +55,7 @@ class ChanSync(Module, AutoCSR):
 			setattr(self, name, data_out)
 
 			###
-		
+
 			syncbuffer = RenameClockDomains(_SyncBuffer(layout_len(channel_layout), depth), "pix")
 			self.submodules += syncbuffer
 			self.comb += [
@@ -115,7 +115,7 @@ class _TB(Module):
 
 if __name__ == "__main__":
 	from migen.sim.generic import run_simulation
-	
+
 	test_seq = [
 		(1, 1, 1),
 		(1, 1, 0),
