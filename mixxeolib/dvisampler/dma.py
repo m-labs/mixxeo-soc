@@ -97,8 +97,8 @@ class DMA(Module):
 		for i in range(bus_dw//32):
 			for j in range(3):
 				b = (i*3+j)*8
-				pixbits.append(self.frame.payload.pixels[b+6:b+8])
-				pixbits.append(self.frame.payload.pixels[b:b+8])
+				pixbits.append(self.frame.pixels[b+6:b+8])
+				pixbits.append(self.frame.pixels[b:b+8])
 			pixbits.append(0)
 			pixbits.append(0)
 		self.comb += memory_word.eq(Cat(*pixbits))
@@ -106,8 +106,8 @@ class DMA(Module):
 		# bus accessor
 		self.submodules._bus_accessor = dma_lasmi.Writer(lasmim)
 		self.comb += [
-			self._bus_accessor.address_data.payload.a.eq(current_address),
-			self._bus_accessor.address_data.payload.d.eq(memory_word)
+			self._bus_accessor.address_data.a.eq(current_address),
+			self._bus_accessor.address_data.d.eq(memory_word)
 		]
 
 		# control FSM
@@ -116,8 +116,8 @@ class DMA(Module):
 
 		fsm.act("WAIT_SOF",
 			reset_words.eq(1),
-			self.frame.ack.eq(~self._slot_array.address_valid | ~self.frame.payload.sof),
-			If(self._slot_array.address_valid & self.frame.payload.sof & self.frame.stb, NextState("TRANSFER_PIXELS"))
+			self.frame.ack.eq(~self._slot_array.address_valid | ~self.frame.sof),
+			If(self._slot_array.address_valid & self.frame.sof & self.frame.stb, NextState("TRANSFER_PIXELS"))
 		)
 		fsm.act("TRANSFER_PIXELS",
 			self.frame.ack.eq(self._bus_accessor.address_data.ack),

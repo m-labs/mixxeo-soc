@@ -40,7 +40,7 @@ class RawDVISampler(Module, AutoCSR):
 		self.comb += [
 			self.packer.sink.stb.eq(fifo.readable),
 			fifo.re.eq(self.packer.sink.ack),
-			self.packer.sink.payload.word.eq(fifo.dout),
+			self.packer.sink.word.eq(fifo.dout),
 			self.packer.source.connect_flat(self.cast.sink),
 			self.cast.source.connect_flat(self.dma.data)
 		]
