@@ -1,6 +1,7 @@
 from targets.mlabs_video import MiniSoC, get_vga_dvi, add_vga_tig
 
-from mixxeolib import mixframebuffer, dvisampler
+from misoclib.video import dvisampler
+from mixxeolib import mixframebuffer
 
 class VideomixerSoC(MiniSoC):
 	csr_map = {
