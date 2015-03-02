@@ -4,8 +4,9 @@ from migen.flow.actor import Sink, Source, PipelinedActor
 from migen.flow import plumbing
 from migen.flow.network import DataFlowGraph, AbstractActor, CompositeActor
 from migen.bank.description import CSRStorage, AutoCSR
-from migen.actorlib import dma_lasmi, structuring, misc
+from migen.actorlib import structuring, misc
 
+from misoclib.sdram.frontend import dma_lasmi
 from misoclib.framebuffer.format import bpp, pixel_layout, FrameInitiator, VTG
 from misoclib.framebuffer.phy import Driver
 

@@ -12,7 +12,7 @@
 #include "ci.h"
 #include "processor.h"
 
-#ifdef POTS_BASE
+#ifdef CSR_POTS_BASE
 static int scale_pot(int raw, int range)
 {
 	int pot_min = 64000;
@@ -36,7 +36,7 @@ static void regular_blend(int p0, int p1)
 	crossfade = scale_pot(p1, 255);
 
 	fb_blender_f0_write(crossfade*blackout >> 8);
-	fb_blender_f1_write((255-crossfade)*blackout >> 8);	
+	fb_blender_f1_write((255-crossfade)*blackout >> 8);
 }
 
 static void additive_blend(int p0, int p1)
@@ -90,9 +90,9 @@ int main(void)
 	irq_setmask(0);
 	irq_setie(1);
 	uart_init();
-	
+
 	printf("Mixxeo software rev. %08x built "__DATE__" "__TIME__"\n\n", MSC_GIT_ID);
-	
+
 	config_init();
 	time_init();
 	processor_start(config_get(CONFIG_KEY_RESOLUTION));
@@ -102,6 +102,6 @@ int main(void)
 		ui_service();
 		ci_service();
 	}
-	
+
 	return 0;
 }
