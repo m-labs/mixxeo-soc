@@ -6,9 +6,9 @@ from migen.flow.network import DataFlowGraph, AbstractActor, CompositeActor
 from migen.bank.description import CSRStorage, AutoCSR
 from migen.actorlib import structuring, misc
 
-from misoclib.sdram.frontend import dma_lasmi
-from misoclib.framebuffer.format import bpp, pixel_layout, FrameInitiator, VTG
-from misoclib.framebuffer.phy import Driver
+from misoclib.mem.sdram.frontend import dma_lasmi
+from misoclib.video.framebuffer.format import bpp, pixel_layout, FrameInitiator, VTG
+from misoclib.video.framebuffer.phy import Driver
 
 class Blender(PipelinedActor, AutoCSR):
 	def __init__(self, nimages, pack_factor, latency):
