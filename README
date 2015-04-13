@@ -25,7 +25,7 @@ than two frames.
 
 2. Build the Mixxeo gateware and software:
 	go to misoc dir
-	./make.py -X your_mixxeo_path all
+	./make.py -X your_mixxeo_path -t mixxeo all
 
 [> Status:
 ----------
