@@ -1,5 +1,6 @@
 from targets.mlabs_video import MiniSoC, get_vga_dvi, add_vga_tig
 
+from misoclib.mem.sdram.core.lasmicon import LASMIconSettings
 from misoclib.video import dvisampler
 from mixxeolib import mixframebuffer
 
@@ -21,7 +22,9 @@ class VideomixerSoC(MiniSoC):
     interrupt_map.update(MiniSoC.interrupt_map)
 
     def __init__(self, platform, **kwargs):
-        MiniSoC.__init__(self, platform, **kwargs)
+        MiniSoC.__init__(self, platform,
+            sdram_controller_settings=LASMIconSettings(with_bandwidth=True),
+            **kwargs)
         pads_vga, pads_dvi = get_vga_dvi(platform)
         self.submodules.fb = mixframebuffer.MixFramebuffer(pads_vga, pads_dvi,
             self.sdram.crossbar.get_master(), self.sdram.crossbar.get_master())

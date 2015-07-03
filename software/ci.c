@@ -16,9 +16,9 @@ static void print_mem_bandwidth(void)
 	unsigned long long int f;
 	unsigned int rdb, wrb;
 
-	lasmicon_bandwidth_update_write(1);
-	nr = lasmicon_bandwidth_nreads_read();
-	nw = lasmicon_bandwidth_nwrites_read();
+	sdram_controller_bandwidth_update_write(1);
+	nr = sdram_controller_bandwidth_nreads_read();
+	nw = sdram_controller_bandwidth_nwrites_read();
 	f = identifier_frequency_read();
 	rdb = (nr*f >> (24 - 7))/1000000ULL;
 	wrb = (nw*f >> (24 - 7))/1000000ULL;

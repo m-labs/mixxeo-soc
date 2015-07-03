@@ -227,7 +227,7 @@ static void fb_set_mode(const struct video_timing *mode)
 	fb_fi_vsync_start_write(mode->v_active + mode->v_sync_offset);
 	fb_fi_vsync_end_write(mode->v_active + mode->v_sync_offset + mode->v_sync_width);
 	fb_fi_vscan_write(mode->v_active + mode->v_blanking);
-	
+
 	fb_fi_length_write(mode->h_active*mode->v_active*4);
 
 	fb_clkgen_write(0x1, clock_d-1);
@@ -244,10 +244,10 @@ static void edid_set_mode(const struct video_timing *mode)
 
 	generate_edid(&edid, "OHW", "MX", 2013, "Mixxeo ch.A", mode);
 	for(i=0;i<sizeof(edid);i++)
-		MMPTR(DVISAMPLER0_EDID_MEM_BASE+4*i) = edid[i];
+		MMPTR(CSR_DVISAMPLER0_EDID_MEM_BASE+4*i) = edid[i];
 	generate_edid(&edid, "OHW", "MX", 2013, "Mixxeo ch.B", mode);
 	for(i=0;i<sizeof(edid);i++)
-		MMPTR(DVISAMPLER1_EDID_MEM_BASE+4*i) = edid[i];
+		MMPTR(CSR_DVISAMPLER1_EDID_MEM_BASE+4*i) = edid[i];
 }
 
 void processor_start(int mode)
